@@ -1,5 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button, Alert, FlatList, Animated } from 'react-native'
+import { Provider } from 'react-redux'
+import { history, store } from './store'
+import { Animated, FlatList, StyleSheet, Text, View } from 'react-native'
+import Header from './components/Public/Header'
+import Sidebar from './components/Public/Sidebar'
+import { ConnectedRouter } from 'connected-react-router'
 
 interface AppProps {}
 
@@ -37,59 +42,14 @@ export default class App extends React.Component<AppProps, AppState> {
     const { sideBar, fadeAnim } = this.state
 
     return (
-      <View style={{ flex: 1, marginTop: 20 }}>
-        <View style={{ flex: 1, flexDirection: 'row' }}>
-          <View
-            style={{
-              width: 50,
-              height: 50,
-              backgroundColor: 'powderblue',
-              flexGrow: 1,
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-            <Text>Something</Text>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <View style={{ flex: 1, marginTop: 20 }}>
+            <Header />
+            <Sidebar />
           </View>
-          <View
-            style={{
-              width: 50,
-              height: 50,
-              backgroundColor: 'skyblue',
-              bottom: 0,
-              left: 0,
-              opacity: 0.2
-            }}
-          />
-          <View style={{ width: 50, height: 50, backgroundColor: 'steelblue' }}>
-            <Button onPress={this.toggleSideBar} title="Menu" />
-          </View>
-        </View>
-
-        <Animated.View
-          style={{
-            height: '100%',
-            width: '50%',
-            backgroundColor: '#3498db',
-            position: 'absolute',
-            left: fadeAnim,
-            top: 0
-          }}>
-          <FlatList
-            style={{ flex: 3, flexDirection: 'row' }}
-            data={[
-              { key: 'Devin' },
-              { key: 'Jackson' },
-              { key: 'James' },
-              { key: 'Joel' },
-              { key: 'John' },
-              { key: 'Jillian' },
-              { key: 'Jimmy' },
-              { key: 'Julie' }
-            ]}
-            renderItem={({ item }) => <Text style={{ height: 40, padding: 10 }}>{item.key}</Text>}
-          />
-        </Animated.View>
-      </View>
+        </ConnectedRouter>
+      </Provider>
     )
   }
 }
