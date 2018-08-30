@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-native-scripts": "1.14.0",
+    "@types/jest": "^23.3.1",
     "jest-expo": "~27.0.0",
-    "react-test-renderer": "16.3.1"
+    "react-native-scripts": "1.14.0",
+    "react-native-typescript-transformer": "^1.2.10",
+    "react-test-renderer": "16.3.1",
+    "ts-jest": "^23.1.4",
+    "typescript": "^3.0.3"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -16,9 +20,27 @@
     "test": "jest"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testPathIgnorePatterns": [
+      "\\.snap$",
+      "<rootDir>/node_modules/"
+    ],
+    "cacheDirectory": ".jest/cache"
   },
   "dependencies": {
+    "@types/react": "^16.4.13",
+    "@types/react-native": "^0.56.15",
+    "@types/react-test-renderer": "^16.0.2",
     "expo": "^27.0.1",
     "react": "16.3.1",
     "react-native": "~0.55.2"
