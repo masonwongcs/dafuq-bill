@@ -4,6 +4,8 @@ import { history, store } from './store'
 import { Animated, FlatList, StyleSheet, Text, View } from 'react-native'
 import Header from './components/Public/Header'
 import Sidebar from './components/Public/Sidebar'
+import Content from './components/Public/Content'
+import Footer from './components/Public/Footer'
 import { ConnectedRouter } from 'connected-react-router'
 
 interface AppProps {}
@@ -46,7 +48,9 @@ export default class App extends React.Component<AppProps, AppState> {
         <ConnectedRouter history={history}>
           <View style={{ flex: 1, marginTop: 20 }}>
             <Header />
-            <Sidebar />
+            {/*<Sidebar />*/}
+            <Content />
+            <Footer />
           </View>
         </ConnectedRouter>
       </Provider>
