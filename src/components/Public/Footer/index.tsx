@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ScrollView, Button, Text, View, StyleSheet, Animated } from 'react-native'
+import { Text, TextInput, Button, View, StyleSheet, Animated } from 'react-native'
 import { toggleSidebar } from '../../../actions/App'
 import { dispatch } from '../../../store/index'
 import { IReducers } from '../../../reducers'
@@ -40,6 +40,43 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(0,0,0,0.2)',
     shadowOpacity: 0.8,
     shadowRadius: 5
+  },
+  title: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+    width: '90%',
+    marginBottom: 20,
+    marginTop: 40,
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  },
+  inputText: {
+    backgroundColor: '#fff',
+    height: 50,
+    width: '90%',
+    borderRadius: 4,
+    shadowColor: 'rgba(0,0,0,0.2)',
+    shadowOpacity: 0.8,
+    shadowRadius: 8,
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    marginBottom: 20,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    paddingLeft: 10,
+    paddingRight: 20
+  },
+  addButton: {
+    height: 50,
+    width: '90%',
+    borderRadius: 100,
+    backgroundColor: '#90BEDE',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: 40
   }
 })
 
@@ -48,6 +85,10 @@ class Content extends React.Component<FooterProps> {
     fadeAnim: new Animated.Value(40),
     footerActive: false
   }
+  constructor(props) {
+    super(props)
+  }
+
   onClickMenuButton = () => {
     dispatch(toggleSidebar())
     this.setState({
@@ -89,6 +130,14 @@ class Content extends React.Component<FooterProps> {
           <View style={styles.button}>
             <Button title="Add" color="#fff" onPress={this.onClickMenuButton} />
           </View>
+        </View>
+        <Text style={styles.title}>Create new bill</Text>
+        <TextInput editable={true} style={[styles.inputText, { marginTop: 20 }]} maxLength={40} />
+        <TextInput editable={true} style={styles.inputText} maxLength={40} />
+        <TextInput editable={true} style={styles.inputText} maxLength={40} />
+        <TextInput editable={true} style={styles.inputText} maxLength={40} />
+        <View style={styles.addButton}>
+          <Button title="Add" color="#fff" onPress={() => null} />
         </View>
       </Animated.View>
     )
