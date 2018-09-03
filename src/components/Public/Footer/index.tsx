@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Text, TextInput, Button, View, StyleSheet, Animated } from 'react-native'
-import { toggleSidebar } from '../../../actions/App'
+import { Text, TextInput, Button, View, StyleSheet, Animated, ScrollView } from 'react-native'
+import { toggleSidebar, hideSidabarAction, showSidebarAction } from '../../../actions/App'
 import { dispatch } from '../../../store/index'
 import { IReducers } from '../../../reducers'
 import { connect } from 'react-redux'
@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     shadowColor: 'rgba(0,0,0,0.2)',
     shadowOpacity: 0.8,
-    shadowRadius: 5
+    shadowRadius: 5,
+    zIndex: 99
   },
   title: {
     color: '#fff',
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
 
 class Footer extends React.Component<FooterProps> {
   readonly state = {
-    fadeAnim: new Animated.Value(40),
+    fadeAnim: new Animated.Value(50),
     footerActive: false
   }
   constructor(props) {
@@ -106,11 +107,40 @@ class Footer extends React.Component<FooterProps> {
         }).start()
       } else {
         Animated.spring(this.state.fadeAnim, {
-          toValue: 40,
+          toValue: 50,
           friction: 30
         }).start()
       }
     }
+  }
+
+  updateFooterHeight = height => {
+    const { showSidebar } = this.props
+    let outerHeight = 600
+    if (height <= 0) {
+      outerHeight = 600 + height * 10
+    }
+
+    console.log(height)
+    if (height > 50) {
+      dispatch(showSidebarAction())
+    }
+    if (height < -50) {
+      dispatch(hideSidabarAction())
+      outerHeight = 50
+    }
+    // if (showSidebar) {
+    //   Animated.spring(this.state.fadeAnim, {
+    //     toValue: outerHeight,
+    //     friction: 30
+    //   }).start()
+    // }
+    // else {
+    //   Animated.spring(this.state.fadeAnim, {
+    //     toValue: 30 + height * 5,
+    //     friction: 30
+    //   }).start()
+    // }
   }
   render() {
     const { fadeAnim, footerActive } = this.state
@@ -131,6 +161,20 @@ class Footer extends React.Component<FooterProps> {
             <Button title="Add" color="#fff" onPress={this.onClickMenuButton} />
           </View>
         </View>
+        <ScrollView
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            height: '100%',
+            width: '100%',
+            zIndex: -1
+          }}
+          scrollEventThrottle={16}
+          onScroll={evt => this.updateFooterHeight(evt.nativeEvent.contentOffset.y)}
+        />
         <Text style={styles.title}>Create new bill</Text>
         <TextInput editable={true} style={[styles.inputText, { marginTop: 20 }]} maxLength={40} />
         <TextInput editable={true} style={styles.inputText} maxLength={40} />

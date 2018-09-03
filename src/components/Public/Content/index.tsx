@@ -32,7 +32,12 @@ const styles = StyleSheet.create({
 class Content extends React.Component<HeaderProps> {
   render() {
     return (
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.container}
+        showsVerticalScrollIndicator={false}
+        onScroll={event => {
+          console.log(event.nativeEvent.contentOffset.y)
+        }}>
         <View
           style={[
             styles.item,

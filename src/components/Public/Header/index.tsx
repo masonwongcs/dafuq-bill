@@ -7,7 +7,7 @@ interface HeaderProps {}
 
 const styles = StyleSheet.create({
   container: {
-    top: 20,
+    top: 35,
     position: 'absolute',
     borderRadius: 100,
     left: 25,

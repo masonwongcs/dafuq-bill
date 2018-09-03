@@ -32,9 +32,9 @@ class Container extends React.Component<ContainerProps, ContainerState> {
     const { showSidebar } = this.props
     if (prevShowSidebar !== showSidebar) {
       if (showSidebar) {
-          this.setState({
-              sideBar: true
-          })
+        this.setState({
+          sideBar: true
+        })
         Animated.spring(this.state.intensity, {
           toValue: 100,
           friction: 30
@@ -43,10 +43,10 @@ class Container extends React.Component<ContainerProps, ContainerState> {
         Animated.spring(this.state.intensity, {
           toValue: 0,
           friction: 30
-        }).start(()=>{
-            this.setState({
-                sideBar: false
-            })
+        }).start(() => {
+          this.setState({
+            sideBar: false
+          })
         })
       }
     }
@@ -56,7 +56,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
     const { showSidebar } = this.props
     const { intensity, sideBar } = this.state
     return (
-      <View style={{ flex: 1, marginTop: 20 }}>
+      <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
           {sideBar && (
             <AnimatedBlurView
@@ -74,7 +74,6 @@ class Container extends React.Component<ContainerProps, ContainerState> {
               }}
             />
           )}
-
           <Header />
           {/*<Sidebar />*/}
           <Content />
