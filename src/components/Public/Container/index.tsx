@@ -1,9 +1,7 @@
 import React from 'react'
-import { connect, Provider } from 'react-redux'
-import { history, store } from '../../../store'
-import { Animated, FlatList, StyleSheet, Text, View } from 'react-native'
+import { connect } from 'react-redux'
+import { Animated, View } from 'react-native'
 import Header from '../Header'
-import Sidebar from '../Sidebar'
 import Content from '../Content'
 import Footer from '../Footer'
 import { BlurView } from 'expo'
@@ -88,4 +86,4 @@ class Container extends React.Component<ContainerProps, ContainerState> {
 const mapStateToProps = ({ App: { showSidebar } }: IReducers) => ({
   showSidebar
 })
-export default connect<ConnectedProps>(mapStateToProps)(Container)
+export default connect(mapStateToProps)(Container)

@@ -1,7 +1,5 @@
 import * as React from 'react'
-import { ScrollView, Button, Text, View, StyleSheet } from 'react-native'
-import { toggleSidebar } from '../../../actions/App'
-import { dispatch } from '../../../store/index'
+import { ScrollView, View, StyleSheet } from 'react-native'
 
 interface HeaderProps {}
 

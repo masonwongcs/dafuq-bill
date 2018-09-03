@@ -1,4 +1,4 @@
-export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
-export const toggleSidebar = ()=>({
-  type: TOGGLE_SIDEBAR
+export const TOGGLE_FOOTER = 'TOGGLE_FOOTER'
+export const toggleFooter = ()=>({
+  type: TOGGLE_FOOTER
 })

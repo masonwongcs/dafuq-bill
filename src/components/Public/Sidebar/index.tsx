@@ -66,4 +66,4 @@ class Sidebar extends React.Component<SidebarProps, SidebarState> {
 const mapStateToProps = ({ App: { showSidebar } }: IReducers) => ({
   showSidebar
 })
-export default connect<ConnectedProps>(mapStateToProps)(Sidebar)
+export default connect(mapStateToProps)(Sidebar)

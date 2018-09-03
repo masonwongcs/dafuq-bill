@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Text, TextInput, Button, View, StyleSheet, Animated } from 'react-native'
-import { toggleSidebar } from '../../../actions/App'
+import { Animated, Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { toggleFooter } from '../../../actions/App'
 import { dispatch } from '../../../store/index'
 import { IReducers } from '../../../reducers'
 import { connect } from 'react-redux'
@@ -85,12 +85,9 @@ class Footer extends React.Component<FooterProps> {
     fadeAnim: new Animated.Value(40),
     footerActive: false
   }
-  constructor(props) {
-    super(props)
-  }
 
   onClickMenuButton = () => {
-    dispatch(toggleSidebar())
+    dispatch(toggleFooter())
     this.setState({
       footerActive: !this.state.footerActive
     })
@@ -147,4 +144,4 @@ class Footer extends React.Component<FooterProps> {
 const mapStateToProps = ({ App: { showSidebar } }: IReducers) => ({
   showSidebar
 })
-export default connect<ConnectedProps>(mapStateToProps)(Footer)
+export default connect(mapStateToProps)(Footer)

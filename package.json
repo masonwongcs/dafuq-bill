@@ -39,6 +39,7 @@
     "cacheDirectory": ".jest/cache"
   },
   "dependencies": {
+    "@types/expo": "^27.0.8",
     "@types/history": "^4.7.0",
     "@types/react": "^16.4.13",
     "@types/react-native": "^0.56.15",

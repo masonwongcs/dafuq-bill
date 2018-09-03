@@ -1,4 +1,4 @@
-import { TOGGLE_SIDEBAR } from '../actions/App'
+import { TOGGLE_FOOTER } from '../actions/App'
 
 export interface IAppState {
   showSidebar: boolean
@@ -10,7 +10,7 @@ const APP_STATE: IAppState = {
 
 function App(state = APP_STATE, action): IAppState {
   switch (action.type) {
-    case TOGGLE_SIDEBAR: {
+    case TOGGLE_FOOTER: {
       state = Object.assign({}, state, { showSidebar: !state.showSidebar })
     }
   }

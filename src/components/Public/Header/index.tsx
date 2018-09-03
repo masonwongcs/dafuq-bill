@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
-import { toggleSidebar } from '../../../actions/App'
+import { toggleFooter } from '../../../actions/App'
 import { dispatch } from '../../../store/index'
 
 interface HeaderProps {}
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
 
 class Header extends React.Component<HeaderProps> {
   onClickMenuButton = () => {
-    dispatch(toggleSidebar())
+    dispatch(toggleFooter())
   }
 
   render() {
