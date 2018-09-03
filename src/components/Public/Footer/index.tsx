@@ -1,12 +1,22 @@
 import * as React from 'react'
-import { Animated, Button, StyleSheet, Text, TextInput, View } from 'react-native'
-import { toggleFooter } from '../../../actions/App'
+import {
+  Text,
+  TextInput,
+  Button,
+  View,
+  StyleSheet,
+  Animated,
+  ScrollView,
+  NativeSyntheticEvent,
+  NativeScrollEvent
+} from 'react-native'
+import { toggleFooter, hideFooterAction, showFooterAction } from '../../../actions/App'
 import { dispatch } from '../../../store/index'
 import { IReducers } from '../../../reducers'
 import { connect } from 'react-redux'
 
 interface ConnectedProps {
-  showSidebar: boolean
+  showFooter: boolean
 }
 interface FooterProps extends ConnectedProps {}
 
@@ -39,7 +49,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     shadowColor: 'rgba(0,0,0,0.2)',
     shadowOpacity: 0.8,
-    shadowRadius: 5
+    shadowRadius: 5,
+    zIndex: 99
   },
   title: {
     color: '#fff',
@@ -82,7 +93,7 @@ const styles = StyleSheet.create({
 
 class Footer extends React.Component<FooterProps> {
   readonly state = {
-    fadeAnim: new Animated.Value(40),
+    fadeAnim: new Animated.Value(50),
     footerActive: false
   }
 
@@ -93,21 +104,50 @@ class Footer extends React.Component<FooterProps> {
     })
   }
 
-  componentDidUpdate({ showSidebar: prevShowSidebar }: FooterProps) {
-    const { showSidebar } = this.props
-    if (prevShowSidebar !== showSidebar) {
-      if (showSidebar) {
+  componentDidUpdate({ showFooter: prevShowFooter }: FooterProps) {
+    const { showFooter } = this.props
+    if (prevShowFooter !== showFooter) {
+      if (showFooter) {
         Animated.spring(this.state.fadeAnim, {
           toValue: 600,
           friction: 30
         }).start()
       } else {
         Animated.spring(this.state.fadeAnim, {
-          toValue: 40,
+          toValue: 50,
           friction: 30
         }).start()
       }
     }
+  }
+
+  updateFooterHeight = height => {
+    const { showFooter } = this.props
+    let outerHeight = 600
+    if (height <= 0) {
+      outerHeight = 600 + height * 10
+    }
+
+    console.log(height)
+    if (height > 50) {
+      dispatch(showFooterAction())
+    }
+    if (height < -50) {
+      dispatch(hideFooterAction())
+      outerHeight = 50
+    }
+    // if (showFooter) {
+    //   Animated.spring(this.state.fadeAnim, {
+    //     toValue: outerHeight,
+    //     friction: 30
+    //   }).start()
+    // }
+    // else {
+    //   Animated.spring(this.state.fadeAnim, {
+    //     toValue: 30 + height * 5,
+    //     friction: 30
+    //   }).start()
+    // }
   }
   render() {
     const { fadeAnim, footerActive } = this.state
@@ -128,6 +168,20 @@ class Footer extends React.Component<FooterProps> {
             <Button title="Add" color="#fff" onPress={this.onClickMenuButton} />
           </View>
         </View>
+        <ScrollView
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            height: '100%',
+            width: '100%',
+            zIndex: -1
+          }}
+          scrollEventThrottle={16}
+          onScroll={(evt) => this.updateFooterHeight((evt as NativeSyntheticEvent<NativeScrollEvent>).nativeEvent.contentOffset.y)}
+        />
         <Text style={styles.title}>Create new bill</Text>
         <TextInput editable={true} style={[styles.inputText, { marginTop: 20 }]} maxLength={40} />
         <TextInput editable={true} style={styles.inputText} maxLength={40} />
@@ -141,7 +195,7 @@ class Footer extends React.Component<FooterProps> {
   }
 }
 
-const mapStateToProps = ({ App: { showSidebar } }: IReducers) => ({
-  showSidebar
+const mapStateToProps = ({ App: { showFooter } }: IReducers) => ({
+  showFooter
 })
 export default connect(mapStateToProps)(Footer)

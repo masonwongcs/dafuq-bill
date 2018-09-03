@@ -1,18 +1,30 @@
-import { TOGGLE_FOOTER } from '../actions/App'
+import { HIDE_FOOTER, SHOW_FOOTER, TOGGLE_FOOTER } from '../actions/App'
 
 export interface IAppState {
-  showSidebar: boolean
+  showFooter: boolean
 }
 
 const APP_STATE: IAppState = {
-  showSidebar: false
+  showFooter: false
 }
 
 function App(state = APP_STATE, action): IAppState {
   switch (action.type) {
     case TOGGLE_FOOTER: {
-      state = Object.assign({}, state, { showSidebar: !state.showSidebar })
+      state = Object.assign({}, state, { showFooter: !state.showFooter })
+      break
     }
+    case HIDE_FOOTER:
+      {
+        state = Object.assign({}, state, { showFooter: false })
+      }
+      break
+
+    case SHOW_FOOTER:
+      {
+        state = Object.assign({}, state, { showFooter: true })
+      }
+      break
   }
   return state
 }

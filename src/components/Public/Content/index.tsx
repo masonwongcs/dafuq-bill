@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ScrollView, View, StyleSheet } from 'react-native'
+import { ScrollView, View, StyleSheet, NativeSyntheticEvent, NativeScrollEvent } from 'react-native'
 
 interface HeaderProps {}
 
@@ -30,7 +30,12 @@ const styles = StyleSheet.create({
 class Content extends React.Component<HeaderProps> {
   render() {
     return (
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.container}
+        showsVerticalScrollIndicator={false}
+        onScroll={event => {
+          console.log((event as NativeSyntheticEvent<NativeScrollEvent>).nativeEvent.contentOffset.y)
+        }}>
         <View
           style={[
             styles.item,
