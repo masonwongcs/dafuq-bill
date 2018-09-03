@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    zIndex: 2
+    zIndex: 99
   },
   button: {
     borderRadius: 100,
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   }
 })
 
-class Content extends React.Component<FooterProps> {
+class Footer extends React.Component<FooterProps> {
   readonly state = {
     fadeAnim: new Animated.Value(40),
     footerActive: false
@@ -147,4 +147,4 @@ class Content extends React.Component<FooterProps> {
 const mapStateToProps = ({ App: { showSidebar } }: IReducers) => ({
   showSidebar
 })
-export default connect<ConnectedProps>(mapStateToProps)(Content)
+export default connect<ConnectedProps>(mapStateToProps)(Footer)

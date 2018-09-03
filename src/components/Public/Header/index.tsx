@@ -19,7 +19,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#E9E9E9',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 1
+    zIndex: 1,
+    shadowColor: 'rgba(0,0,0,0.2)',
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    shadowOffset: {
+      width: 0,
+      height: 3
+    }
   },
   active: {
     backgroundColor: '#A0EEEE',
