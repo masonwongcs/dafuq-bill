@@ -30,13 +30,17 @@ class Container extends React.Component<ContainerProps, ContainerState> {
     const { showFooter } = this.props
     if (prevShowFooter !== showFooter) {
       if (showFooter) {
-        this.setState({
-          sideBar: true
-        })
-        Animated.spring(this.state.intensity, {
-          toValue: 100,
-          friction: 30
-        }).start()
+        this.setState(
+          {
+            sideBar: true
+          },
+          () => {
+            Animated.spring(this.state.intensity, {
+              toValue: 100,
+              friction: 30
+            }).start()
+          }
+        )
       } else {
         Animated.spring(this.state.intensity, {
           toValue: 0,
