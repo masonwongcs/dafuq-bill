@@ -10,7 +10,7 @@ import { IReducers } from '../../../reducers'
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView)
 
 interface ConnectedProps {
-  showSidebar: boolean
+  showFooter: boolean
 }
 
 interface ContainerProps extends ConnectedProps {}
@@ -26,10 +26,10 @@ class Container extends React.Component<ContainerProps, ContainerState> {
     intensity: new Animated.Value(0)
   }
 
-  componentDidUpdate({ showSidebar: prevShowSidebar }: ContainerProps) {
-    const { showSidebar } = this.props
-    if (prevShowSidebar !== showSidebar) {
-      if (showSidebar) {
+  componentDidUpdate({ showFooter: prevShowFooter }: ContainerProps) {
+    const { showFooter } = this.props
+    if (prevShowFooter !== showFooter) {
+      if (showFooter) {
         this.setState({
           sideBar: true
         })
@@ -51,7 +51,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
   }
 
   render() {
-    const { showSidebar } = this.props
+    const { showFooter } = this.props
     const { intensity, sideBar } = this.state
     return (
       <View style={{ flex: 1 }}>
