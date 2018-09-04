@@ -57,6 +57,13 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 20
   },
+  pickerContent: {
+    marginBottom: 20,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    paddingLeft: 10,
+    paddingRight: 20
+  },
   addButton: {
     height: 50,
     width: '90%',

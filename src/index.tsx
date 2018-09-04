@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { history, store } from 'store'
 import { ConnectedRouter } from 'connected-react-router'
-import Container from 'components/Public/Container'
+import Container from 'components/Container'
 
 interface AppProps {}
 

@@ -2,7 +2,6 @@ import * as React from 'react'
 import {
   Text,
   TextInput,
-  Image,
   View,
   Animated,
   ScrollView,
@@ -16,25 +15,40 @@ import { dispatch } from 'store'
 import { IReducers } from 'reducers'
 import { connect } from 'react-redux'
 import { LinearGradient } from 'expo'
+import BillType from './Fields/BillType'
+import DateCmp from './Fields/DateCmp'
 
 import addIcon from 'images/add.png'
+import { addItemToList } from '../../../actions/List'
+
+export enum BILL_TYPE {
+  'Credit Card',
+  'Insurance'
+}
 
 interface ConnectedProps {
   showFooter: boolean
 }
 interface FooterProps extends ConnectedProps {}
 
-interface SidebarState {
+interface FooterState {
   fadeAnim: Animated.AnimatedValue
   rotate: Animated.AnimatedValue
   footerActive: boolean
+  form: {
+    title: string
+    type: BILL_TYPE
+    date: Date
+    remark: string
+  }
 }
 
-class Footer extends React.Component<FooterProps> {
+class Footer extends React.Component<FooterProps, FooterState> {
   readonly state = {
     fadeAnim: new Animated.Value(50),
     rotate: new Animated.Value(0),
-    footerActive: false
+    footerActive: false,
+    form: { title: undefined, type: BILL_TYPE['Credit Card'], date: new Date(), remark: undefined }
   }
 
   onClickMenuButton = () => {
@@ -97,8 +111,22 @@ class Footer extends React.Component<FooterProps> {
     //   }).start()
     // }
   }
+  onChangeText = (type: string, value: string | Date) => {
+    this.setState({
+      form: Object.assign({}, this.state.form, { [type]: value })
+    })
+  }
+  onSubmit = () => {
+    dispatch(addItemToList(this.state.form))
+    dispatch(hideFooterAction())
+    this.setState({ form: { title: undefined, type: BILL_TYPE['Credit Card'], date: new Date(), remark: undefined } })
+  }
   render() {
-    const { fadeAnim, rotate, footerActive } = this.state
+    const {
+      fadeAnim,
+      rotate,
+      form: { title, type, date, remark }
+    } = this.state
     const spin = rotate.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '-45deg']
@@ -159,11 +187,25 @@ class Footer extends React.Component<FooterProps> {
             }
           />
           <Text style={styles.title}>Create new bill</Text>
-          <TextInput editable={true} style={[styles.inputText, { marginTop: 20 }]} maxLength={40} />
-          <TextInput editable={true} style={styles.inputText} maxLength={40} />
-          <TextInput editable={true} style={styles.inputText} maxLength={40} />
-          <TextInput editable={true} style={styles.inputText} maxLength={40} />
-          <TouchableOpacity style={styles.addButton}>
+          <TextInput
+            placeholder="Bill Title"
+            onChangeText={this.onChangeText.bind(null, 'title')}
+            value={title}
+            editable
+            style={[styles.inputText, { marginTop: 20 }]}
+            maxLength={40}
+          />
+          <BillType type={type} onChangeText={this.onChangeText} />
+          <DateCmp date={date} onChangeText={this.onChangeText} />
+          <TextInput
+            onChangeText={this.onChangeText.bind(null, 'remark')}
+            value={remark}
+            placeholder="Remark"
+            editable
+            style={styles.inputText}
+            maxLength={40}
+          />
+          <TouchableOpacity style={styles.addButton} onPress={this.onSubmit}>
             <Text style={styles.addButtonText}>Add</Text>
           </TouchableOpacity>
         </LinearGradient>

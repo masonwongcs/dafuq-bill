@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Animated, View } from 'react-native'
-import Header from '../Header'
-import Content from '../Content'
-import Footer from '../Footer'
+import Header from 'components/Public/Header'
+import Content from 'components/List'
+import Footer from 'components/Public/Footer'
 import { BlurView } from 'expo'
 import { IReducers } from 'reducers'
 
