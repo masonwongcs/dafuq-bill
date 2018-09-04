@@ -9,10 +9,10 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent
 } from 'react-native'
-import {styles} from './Style'
-import { toggleFooter, hideFooterAction, showFooterAction } from '../../../actions/App'
-import { dispatch } from '../../../store/index'
-import { IReducers } from '../../../reducers'
+import { styles } from './Style'
+import { toggleFooter, hideFooterAction, showFooterAction } from 'actions/App'
+import { dispatch } from 'store'
+import { IReducers } from 'reducers'
 import { connect } from 'react-redux'
 
 interface ConnectedProps {
@@ -23,7 +23,6 @@ interface FooterProps extends ConnectedProps {}
 interface SidebarState {
   fadeAnim: Animated.AnimatedValue
 }
-
 
 class Footer extends React.Component<FooterProps> {
   readonly state = {
@@ -114,7 +113,9 @@ class Footer extends React.Component<FooterProps> {
             zIndex: -1
           }}
           scrollEventThrottle={16}
-          onScroll={(evt) => this.updateFooterHeight((evt as NativeSyntheticEvent<NativeScrollEvent>).nativeEvent.contentOffset.y)}
+          onScroll={evt =>
+            this.updateFooterHeight((evt as NativeSyntheticEvent<NativeScrollEvent>).nativeEvent.contentOffset.y)
+          }
         />
         <Text style={styles.title}>Create new bill</Text>
         <TextInput editable={true} style={[styles.inputText, { marginTop: 20 }]} maxLength={40} />

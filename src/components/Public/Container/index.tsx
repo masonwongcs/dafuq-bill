@@ -5,7 +5,7 @@ import Header from '../Header'
 import Content from '../Content'
 import Footer from '../Footer'
 import { BlurView } from 'expo'
-import { IReducers } from '../../../reducers'
+import { IReducers } from 'reducers'
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView)
 

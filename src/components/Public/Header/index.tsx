@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { View, Text } from 'react-native'
 import { styles } from './Style'
-import { toggleFooter } from '../../../actions/App'
-import { dispatch } from '../../../store/index'
+import { toggleFooter } from 'actions/App'
+import { dispatch } from 'store'
 
 interface HeaderProps {}
 
