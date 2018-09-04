@@ -2,18 +2,22 @@ import * as React from 'react'
 import {
   Text,
   TextInput,
-  Button,
+  Image,
   View,
   Animated,
   ScrollView,
   NativeSyntheticEvent,
-  NativeScrollEvent
+  NativeScrollEvent,
+  TouchableOpacity
 } from 'react-native'
 import { styles } from './Style'
 import { toggleFooter, hideFooterAction, showFooterAction } from 'actions/App'
 import { dispatch } from 'store'
 import { IReducers } from 'reducers'
 import { connect } from 'react-redux'
+import { LinearGradient } from 'expo'
+
+const addIcon = require('../../Image/add.png')
 
 interface ConnectedProps {
   showFooter: boolean
@@ -22,11 +26,14 @@ interface FooterProps extends ConnectedProps {}
 
 interface SidebarState {
   fadeAnim: Animated.AnimatedValue
+  rotate: Animated.AnimatedValue
+  footerActive: boolean
 }
 
 class Footer extends React.Component<FooterProps> {
   readonly state = {
     fadeAnim: new Animated.Value(50),
+    rotate: new Animated.Value(0),
     footerActive: false
   }
 
@@ -45,9 +52,17 @@ class Footer extends React.Component<FooterProps> {
           toValue: 600,
           friction: 30
         }).start()
+        Animated.spring(this.state.rotate, {
+          toValue: 1,
+          friction: 30
+        }).start()
       } else {
         Animated.spring(this.state.fadeAnim, {
           toValue: 50,
+          friction: 30
+        }).start()
+        Animated.spring(this.state.rotate, {
+          toValue: 0,
           friction: 30
         }).start()
       }
@@ -62,7 +77,7 @@ class Footer extends React.Component<FooterProps> {
     }
 
     console.log(height)
-    if (height > 50) {
+    if (height > 20) {
       dispatch(showFooterAction())
     }
     if (height < -50) {
@@ -71,19 +86,23 @@ class Footer extends React.Component<FooterProps> {
     }
     // if (showFooter) {
     //   Animated.spring(this.state.fadeAnim, {
-    //     toValue: outerHeight,
+    //     toValue: 600,
     //     friction: 30
     //   }).start()
     // }
     // else {
     //   Animated.spring(this.state.fadeAnim, {
-    //     toValue: 30 + height * 5,
+    //     toValue: 30 + height * 10,
     //     friction: 30
     //   }).start()
     // }
   }
   render() {
-    const { fadeAnim, footerActive } = this.state
+    const { fadeAnim, rotate, footerActive } = this.state
+    const spin = rotate.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '-45deg']
+    })
     return (
       <Animated.View
         style={{
@@ -91,17 +110,25 @@ class Footer extends React.Component<FooterProps> {
           bottom: 0,
           left: 0,
           right: 0,
-          height: fadeAnim,
-          backgroundColor: '#7DF0E4',
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30
+          height: fadeAnim
         }}>
         <View>
-          <View style={styles.button}>
-            <Button title="Add" color="#fff" onPress={this.onClickMenuButton} />
-          </View>
+          <TouchableOpacity style={styles.button} onPress={this.onClickMenuButton} activeOpacity={1}>
+            <Animated.Image
+              style={{
+                width: 30,
+                height: 30,
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: 10,
+                transform: [{ rotate: spin }]
+              }}
+              source={addIcon}
+            />
+          </TouchableOpacity>
         </View>
-        <ScrollView
+        <LinearGradient
+          colors={['#A4EFF0', '#9AEBD7']}
           style={{
             position: 'absolute',
             top: 0,
@@ -110,21 +137,36 @@ class Footer extends React.Component<FooterProps> {
             left: 0,
             height: '100%',
             width: '100%',
-            zIndex: -1
-          }}
-          scrollEventThrottle={16}
-          onScroll={evt =>
-            this.updateFooterHeight((evt as NativeSyntheticEvent<NativeScrollEvent>).nativeEvent.contentOffset.y)
-          }
-        />
-        <Text style={styles.title}>Create new bill</Text>
-        <TextInput editable={true} style={[styles.inputText, { marginTop: 20 }]} maxLength={40} />
-        <TextInput editable={true} style={styles.inputText} maxLength={40} />
-        <TextInput editable={true} style={styles.inputText} maxLength={40} />
-        <TextInput editable={true} style={styles.inputText} maxLength={40} />
-        <View style={styles.addButton}>
-          <Button title="Add" color="#fff" onPress={() => null} />
-        </View>
+            zIndex: -1,
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+            overflow: 'hidden'
+          }}>
+          <ScrollView
+            style={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0,
+              height: '100%',
+              width: '100%',
+              zIndex: -1
+            }}
+            scrollEventThrottle={16}
+            onScroll={evt =>
+              this.updateFooterHeight((evt as NativeSyntheticEvent<NativeScrollEvent>).nativeEvent.contentOffset.y)
+            }
+          />
+          <Text style={styles.title}>Create new bill</Text>
+          <TextInput editable={true} style={[styles.inputText, { marginTop: 20 }]} maxLength={40} />
+          <TextInput editable={true} style={styles.inputText} maxLength={40} />
+          <TextInput editable={true} style={styles.inputText} maxLength={40} />
+          <TextInput editable={true} style={styles.inputText} maxLength={40} />
+          <TouchableOpacity style={styles.addButton}>
+            <Text style={styles.addButtonText}>Add</Text>
+          </TouchableOpacity>
+        </LinearGradient>
       </Animated.View>
     )
   }

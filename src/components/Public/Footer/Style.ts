@@ -65,5 +65,11 @@ export const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     marginBottom: 40
+  },
+  addButtonText: {
+    lineHeight: 50,
+    textAlign: 'center',
+    color: '#fff',
+    fontWeight: 'bold'
   }
 })
