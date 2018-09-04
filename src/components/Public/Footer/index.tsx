@@ -52,18 +52,18 @@ class Footer extends React.Component<FooterProps> {
           toValue: 600,
           friction: 30
         }).start()
-        Animated.spring(this.state.rotate, {
+        Animated.timing(this.state.rotate, {
           toValue: 1,
-          friction: 30
+          duration: 400
         }).start()
       } else {
         Animated.spring(this.state.fadeAnim, {
           toValue: 50,
           friction: 30
         }).start()
-        Animated.spring(this.state.rotate, {
+        Animated.timing(this.state.rotate, {
           toValue: 0,
-          friction: 30
+          duration: 400
         }).start()
       }
     }
