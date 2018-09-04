@@ -17,7 +17,7 @@ import { IReducers } from 'reducers'
 import { connect } from 'react-redux'
 import { LinearGradient } from 'expo'
 
-const addIcon = require('../../Image/add.png')
+import addIcon from 'images/add.png'
 
 interface ConnectedProps {
   showFooter: boolean
