@@ -113,7 +113,8 @@ class Footer extends React.Component<FooterProps, FooterState> {
     //   }).start()
     // }
   }
-  onChangeText = (type: string, value: string | Date) => {
+  onChangeText = (type: string, value: string | Date | BILL_TYPE) => {
+    console.log(type, value)
     this.setState({
       form: Object.assign({}, this.state.form, { [type]: value })
     })

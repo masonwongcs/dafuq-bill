@@ -40,6 +40,7 @@ export const styles = StyleSheet.create({
     marginRight: 'auto'
   },
   inputText: {
+    overflow: 'hidden',
     backgroundColor: '#fff',
     height: 50,
     width: '90%',
@@ -58,9 +59,10 @@ export const styles = StyleSheet.create({
     paddingRight: 20
   },
   pickerContent: {
+    height: 50,
+    lineHeight: 50,
     textAlign: 'left',
     paddingRight: 20,
-    lineHeight: 50,
     fontWeight: 'bold'
   },
   addButton: {
