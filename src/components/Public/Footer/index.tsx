@@ -7,7 +7,8 @@ import {
   ScrollView,
   NativeSyntheticEvent,
   NativeScrollEvent,
-  TouchableOpacity
+  TouchableOpacity,
+  Keyboard
 } from 'react-native'
 import { styles } from './Style'
 import { toggleFooter, hideFooterAction, showFooterAction } from 'actions/App'
@@ -71,6 +72,7 @@ class Footer extends React.Component<FooterProps, FooterState> {
           duration: 400
         }).start()
       } else {
+        Keyboard.dismiss()
         Animated.spring(this.state.fadeAnim, {
           toValue: 50,
           friction: 30

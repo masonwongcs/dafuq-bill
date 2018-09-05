@@ -17,7 +17,9 @@ class Content extends React.Component<HeaderProps> {
     const { list } = this.props
     console.log('List size: ', list.length)
     const lastIndex = list.length - 1
-    return (
+    return list.length === 0 ? (
+      <Image style={styles.noItemImage} source={noBillsImage} resizeMode="contain" />
+    ) : (
       <ScrollView
         style={styles.container}
         showsVerticalScrollIndicator={false}

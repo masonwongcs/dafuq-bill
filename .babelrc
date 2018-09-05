@@ -12,6 +12,7 @@
         "root": ["./src"],
         "extensions": [".ios.js", ".android.js", ".js", ".json", ".ts", ".tsx"]
       }
-    ]
+    ],
+    ["import", { "libraryName": "antd-mobile-rn" }]
   ]
 }
