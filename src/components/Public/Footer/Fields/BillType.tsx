@@ -1,8 +1,10 @@
 import * as React from 'react'
 import { Picker, List } from 'antd-mobile-rn'
-import { View, TextInput, Text, TouchableOpacity } from 'react-native'
+import { View, TextInput, Text, TouchableOpacity, Image } from 'react-native'
 import { styles } from '../Style'
 import { BILL_TYPE } from '../'
+
+import typeIcon from 'images/type.png'
 
 interface BillTypeProps {
   onChangeText: (value: string | Date, type: string) => void
@@ -28,12 +30,12 @@ class BillType extends React.Component<BillTypeProps, BillTypeState> {
     const { onChangeText, type } = this.props
     return (
       <View style={styles.antInputText}>
-        <List
-          style={{
-            position: 'absolute',
-            width: '100%',
-            bottom: 0
-          }}>
+        <Image
+          source={typeIcon}
+          resizeMode="contain"
+          style={{ width: 30, height: 30, position: 'absolute', top: 10, left: 10, zIndex: 1 }}
+        />
+        <List style={{ height: '100%', paddingLeft: 30 }}>
           <Picker
             cols={1}
             value={[type]}
@@ -44,9 +46,9 @@ class BillType extends React.Component<BillTypeProps, BillTypeState> {
             )}>
             <List.Item
               style={{
-                width: '100%',
                 bottom: 0,
                 height: 50,
+                paddingLeft: 30,
                 borderBottomColor: '#fff'
               }}
               arrow="horizontal">

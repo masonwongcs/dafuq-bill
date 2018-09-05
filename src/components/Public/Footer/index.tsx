@@ -8,7 +8,8 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
   TouchableOpacity,
-  Keyboard
+  Keyboard,
+  Image
 } from 'react-native'
 import { styles } from './Style'
 import { toggleFooter, hideFooterAction, showFooterAction } from 'actions/App'
@@ -20,6 +21,10 @@ import BillType from './Fields/BillType'
 import DateCmp from './Fields/DateCmp'
 
 import addIcon from 'images/add.png'
+import labelIcon from 'images/label.png'
+import amountIcon from 'images/amount.png'
+import timeIcon from 'images/time.png'
+
 import { addItemToList } from '../../../actions/List'
 
 export enum BILL_TYPE {
@@ -189,24 +194,40 @@ class Footer extends React.Component<FooterProps, FooterState> {
             }
           />
           <Text style={styles.title}>Create new bill</Text>
-          <TextInput
-            placeholder="Bill Title"
-            onChangeText={this.onChangeText.bind(null, 'title')}
-            value={title}
-            editable
-            style={[styles.inputText, { marginTop: 20, fontWeight: 'bold' }]}
-            maxLength={40}
-          />
+          <View style={[styles.inputText, { marginTop: 20 }]}>
+            <Image
+              source={labelIcon}
+              resizeMode="contain"
+              style={{ width: 30, height: 30, position: 'absolute', top: 10, left: 10 }}
+            />
+            <TextInput
+              placeholder="Bill Title"
+              onChangeText={this.onChangeText.bind(null, 'title')}
+              value={title}
+              style={{ fontWeight: 'bold', height: '100%', paddingLeft: 30 }}
+              editable
+              maxLength={40}
+            />
+          </View>
+
           <BillType type={type} onChangeText={this.onChangeText} />
+          <View style={styles.inputText}>
+            <Image
+              source={amountIcon}
+              resizeMode="contain"
+              style={{ width: 30, height: 30, position: 'absolute', top: 10, left: 10 }}
+            />
+            <TextInput
+              onChangeText={this.onChangeText.bind(null, 'remark')}
+              value={remark}
+              placeholder="Amount"
+              editable
+              style={{ fontWeight: 'bold', height: '100%', paddingLeft: 30 }}
+              maxLength={40}
+            />
+          </View>
+
           <DateCmp date={date} onChangeText={this.onChangeText} />
-          <TextInput
-            onChangeText={this.onChangeText.bind(null, 'remark')}
-            value={remark}
-            placeholder="Remark"
-            editable
-            style={styles.inputText}
-            maxLength={40}
-          />
           <TouchableOpacity style={styles.addButton} onPress={this.onSubmit}>
             <Text style={[styles.addButtonText, { fontWeight: 'bold' }]}>Add</Text>
           </TouchableOpacity>
