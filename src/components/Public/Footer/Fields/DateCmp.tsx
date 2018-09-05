@@ -24,12 +24,12 @@ class DateCmp extends React.Component<DateProps, DateState> {
     const { onChangeText, date } = this.props
     return (
       <>
-        <TouchableOpacity style={styles.inputText} onPress={this.toggleDatePicker}>
+        <TouchableOpacity style={styles.inputText} activeOpacity={100} onPress={this.toggleDatePicker}>
           <Text style={styles.pickerContent}>{moment(date).format('YYYY-MM-DD')}</Text>
         </TouchableOpacity>
         {showDatePicker && (
           <DatePickerIOS
-            style={{ backgroundColor: '#fff' }}
+            style={styles.contentPickerIOS }
             mode="date"
             date={date}
             onDateChange={onChangeText.bind(null, 'date')}

@@ -25,14 +25,11 @@ class BillType extends React.Component<BillTypeProps, BillTypeState> {
     console.log(type)
     return (
       <>
-        <TouchableOpacity style={styles.inputText} onPress={this.togglePicker}>
+        <TouchableOpacity style={styles.inputText} activeOpacity={100} onPress={this.togglePicker}>
           <Text style={styles.pickerContent}>{BILL_TYPE[type]}</Text>
         </TouchableOpacity>
         {showPicker && (
-          <Picker
-            style={{ backgroundColor: '#fff' }}
-            onValueChange={onChangeText.bind(null, 'type')}
-            selectedValue={type}>
+          <Picker style={styles.contentPickerIOS} onValueChange={onChangeText.bind(null, 'type')} selectedValue={type}>
             {Object.entries(BILL_TYPE).reduce(
               (r, [key, index]) =>
                 isNaN(Number(key)) ? r.concat(<Picker.Item key={index} label={key} value={index} />) : r,

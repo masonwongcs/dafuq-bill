@@ -1,11 +1,12 @@
 import * as React from 'react'
 import moment from 'moment'
-import { ScrollView, View, NativeSyntheticEvent, NativeScrollEvent, Text } from 'react-native'
+import { ScrollView, View, NativeSyntheticEvent, NativeScrollEvent, Text, Image } from 'react-native'
 import { styles } from './Style'
 import { IReducers } from 'reducers'
 import { connect } from 'react-redux'
 import { IList } from 'reducers/List'
 import { BILL_TYPE } from '../Public/Footer'
+import noBillsImage from 'images/no-bills.png'
 
 interface HeaderProps {
   list: IList[]
@@ -14,6 +15,7 @@ interface HeaderProps {
 class Content extends React.Component<HeaderProps> {
   render() {
     const { list } = this.props
+    console.log('List size: ', list.length)
     const lastIndex = list.length - 1
     return (
       <ScrollView

@@ -54,15 +54,14 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     marginLeft: 'auto',
     marginRight: 'auto',
-    paddingLeft: 10,
+    paddingLeft: 20,
     paddingRight: 20
   },
   pickerContent: {
-    marginBottom: 20,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    paddingLeft: 10,
-    paddingRight: 20
+    textAlign: 'left',
+    paddingRight: 20,
+    lineHeight: 50,
+    fontWeight: 'bold'
   },
   addButton: {
     height: 50,
@@ -78,5 +77,20 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff',
     fontWeight: 'bold'
+  },
+  contentPickerIOS: {
+    zIndex: 1,
+    backgroundColor: '#fff',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    shadowColor: 'rgba(0,0,0,0.2)',
+    shadowOpacity: 0.8,
+    shadowRadius: 8,
+    shadowOffset: {
+      width: 0,
+      height: -2
+    }
   }
 })

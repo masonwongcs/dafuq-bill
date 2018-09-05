@@ -192,7 +192,7 @@ class Footer extends React.Component<FooterProps, FooterState> {
             onChangeText={this.onChangeText.bind(null, 'title')}
             value={title}
             editable
-            style={[styles.inputText, { marginTop: 20 }]}
+            style={[styles.inputText, { marginTop: 20, fontWeight: 'bold' }]}
             maxLength={40}
           />
           <BillType type={type} onChangeText={this.onChangeText} />
@@ -206,7 +206,7 @@ class Footer extends React.Component<FooterProps, FooterState> {
             maxLength={40}
           />
           <TouchableOpacity style={styles.addButton} onPress={this.onSubmit}>
-            <Text style={styles.addButtonText}>Add</Text>
+            <Text style={[styles.addButtonText, { fontWeight: 'bold' }]}>Add</Text>
           </TouchableOpacity>
         </LinearGradient>
       </Animated.View>
