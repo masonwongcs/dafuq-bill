@@ -4,7 +4,7 @@ import { ADD_ITEM_TO_LIST } from 'actions/List'
 export interface IList {
   type: BILL_TYPE
   title: string
-  remark: string
+  amount: string
   date: Date
 }
 export interface IListState {

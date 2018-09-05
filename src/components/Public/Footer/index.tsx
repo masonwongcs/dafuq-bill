@@ -8,7 +8,9 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
   TouchableOpacity,
-  Keyboard
+  Keyboard,
+  Image,
+  ImageSourcePropType
 } from 'react-native'
 import { styles } from './Style'
 import { toggleFooter, hideFooterAction, showFooterAction } from 'actions/App'
@@ -16,11 +18,14 @@ import { dispatch } from 'store'
 import { IReducers } from 'reducers'
 import { connect } from 'react-redux'
 import { LinearGradient } from 'expo'
+import BillTitle from './Fields/BillTitle'
 import BillType from './Fields/BillType'
+import Amount from './Fields/Amount'
 import DateCmp from './Fields/DateCmp'
 
 import addIcon from 'images/add.png'
-import { addItemToList } from '../../../actions/List'
+
+import { addItemToList } from 'actions/List'
 
 export enum BILL_TYPE {
   'Credit Card',
@@ -40,7 +45,7 @@ interface FooterState {
     title: string
     type: BILL_TYPE
     date: Date
-    remark: string
+    amount: string
   }
 }
 
@@ -49,7 +54,7 @@ class Footer extends React.Component<FooterProps, FooterState> {
     fadeAnim: new Animated.Value(50),
     rotate: new Animated.Value(0),
     footerActive: false,
-    form: { title: undefined, type: BILL_TYPE['Credit Card'], date: new Date(), remark: undefined }
+    form: { title: undefined, type: BILL_TYPE['Credit Card'], date: new Date(), amount: undefined }
   }
 
   onClickMenuButton = () => {
@@ -91,8 +96,6 @@ class Footer extends React.Component<FooterProps, FooterState> {
     if (height <= 0) {
       outerHeight = 600 + height * 10
     }
-
-    console.log(height)
     if (height > 20) {
       dispatch(showFooterAction())
     }
@@ -114,7 +117,6 @@ class Footer extends React.Component<FooterProps, FooterState> {
     // }
   }
   onChangeText = (type: string, value: string | Date | BILL_TYPE) => {
-    console.log(type, value)
     this.setState({
       form: Object.assign({}, this.state.form, { [type]: value })
     })
@@ -122,13 +124,13 @@ class Footer extends React.Component<FooterProps, FooterState> {
   onSubmit = () => {
     dispatch(addItemToList(this.state.form))
     dispatch(hideFooterAction())
-    this.setState({ form: { title: undefined, type: BILL_TYPE['Credit Card'], date: new Date(), remark: undefined } })
+    this.setState({ form: { title: undefined, type: BILL_TYPE['Credit Card'], date: new Date(), amount: undefined } })
   }
   render() {
     const {
       fadeAnim,
       rotate,
-      form: { title, type, date, remark }
+      form: { title, type, date, amount }
     } = this.state
     const spin = rotate.interpolate({
       inputRange: [0, 1],
@@ -190,24 +192,11 @@ class Footer extends React.Component<FooterProps, FooterState> {
             }
           />
           <Text style={styles.title}>Create new bill</Text>
-          <TextInput
-            placeholder="Bill Title"
-            onChangeText={this.onChangeText.bind(null, 'title')}
-            value={title}
-            editable
-            style={[styles.inputText, { marginTop: 20, fontWeight: 'bold' }]}
-            maxLength={40}
-          />
+          <BillTitle title={title} onChangeText={this.onChangeText} />
           <BillType type={type} onChangeText={this.onChangeText} />
+          <Amount amount={amount} onChangeText={this.onChangeText} />
+
           <DateCmp date={date} onChangeText={this.onChangeText} />
-          <TextInput
-            onChangeText={this.onChangeText.bind(null, 'remark')}
-            value={remark}
-            placeholder="Remark"
-            editable
-            style={styles.inputText}
-            maxLength={40}
-          />
           <TouchableOpacity style={styles.addButton} onPress={this.onSubmit}>
             <Text style={[styles.addButtonText, { fontWeight: 'bold' }]}>Add</Text>
           </TouchableOpacity>

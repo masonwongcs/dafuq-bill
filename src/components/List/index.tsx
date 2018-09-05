@@ -1,13 +1,12 @@
 import * as React from 'react'
 import moment from 'moment'
-import { ScrollView, View, NativeSyntheticEvent, NativeScrollEvent, Text, Image } from 'react-native'
+import { ScrollView, View, Text, Image, ImageSourcePropType } from 'react-native'
 import { styles } from './Style'
 import { IReducers } from 'reducers'
 import { connect } from 'react-redux'
 import { IList } from 'reducers/List'
 import { BILL_TYPE } from '../Public/Footer'
-import noBillsImage from 'images/no-bills.png'
-
+import noItemImage from 'images/no-bills.png'
 interface HeaderProps {
   list: IList[]
 }
@@ -15,17 +14,11 @@ interface HeaderProps {
 class Content extends React.Component<HeaderProps> {
   render() {
     const { list } = this.props
-    console.log('List size: ', list.length)
     const lastIndex = list.length - 1
     return list.length === 0 ? (
-      <Image style={styles.noItemImage} source={noBillsImage} resizeMode="contain" />
+      <Image style={styles.noItemImage} source={noItemImage as ImageSourcePropType} resizeMode="contain" />
     ) : (
-      <ScrollView
-        style={styles.container}
-        showsVerticalScrollIndicator={false}
-        onScroll={event => {
-          console.log((event as NativeSyntheticEvent<NativeScrollEvent>).nativeEvent.contentOffset.y)
-        }}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         {list.map((item, index) => (
           <View
             key={index}
@@ -42,7 +35,7 @@ class Content extends React.Component<HeaderProps> {
             <Text>{item.title}</Text>
             <Text>{moment(item.date).format('YYYY-MM-DD')}</Text>
             <Text>{BILL_TYPE[item.type]}</Text>
-            <Text>{item.remark}</Text>
+            <Text>{item.amount}</Text>
           </View>
         ))}
       </ScrollView>
