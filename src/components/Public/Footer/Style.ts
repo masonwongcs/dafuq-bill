@@ -57,6 +57,23 @@ export const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20
   },
+  antInputText: {
+    backgroundColor: '#fff',
+    height: 50,
+    width: '90%',
+    borderRadius: 4,
+    shadowColor: 'rgba(0,0,0,0.2)',
+    shadowOpacity: 0.8,
+    shadowRadius: 8,
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    marginBottom: 20,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    overflow: 'hidden'
+  },
   pickerContent: {
     textAlign: 'left',
     paddingRight: 20,

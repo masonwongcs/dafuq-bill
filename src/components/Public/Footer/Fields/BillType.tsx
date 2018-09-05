@@ -27,8 +27,13 @@ class BillType extends React.Component<BillTypeProps, BillTypeState> {
     const { showPicker } = this.state
     const { onChangeText, type } = this.props
     return (
-      <View style={styles.inputText}>
-        <List>
+      <View style={styles.antInputText}>
+        <List
+          style={{
+            position: 'absolute',
+            width: '100%',
+            bottom: 0
+          }}>
           <Picker
             cols={1}
             value={[type]}
@@ -37,7 +42,16 @@ class BillType extends React.Component<BillTypeProps, BillTypeState> {
               (r, [key, index]) => (isNaN(Number(key)) ? r.concat({ label: key, value: index }) : r),
               []
             )}>
-            <List.Item arrow="horizontal">Choose a bill type</List.Item>
+            <List.Item
+              style={{
+                width: '100%',
+                bottom: 0,
+                height: 50,
+                borderBottomColor: '#fff'
+              }}
+              arrow="horizontal">
+              Bill type
+            </List.Item>
           </Picker>
         </List>
         {/*<TextInput*/}
