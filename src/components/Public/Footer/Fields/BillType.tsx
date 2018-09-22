@@ -3,7 +3,7 @@ import { Image, ImageSourcePropType, Text, View } from 'react-native'
 import { List, Picker } from 'antd-mobile-rn'
 import { styles } from '../Style'
 import { BILL_TYPE } from '../'
-import Icon from 'images/type.png'
+import Icon from 'dafuq-bill/src/images/type.png'
 
 interface BillTypeProps {
   onChangeText: (type: string, value: BILL_TYPE) => void

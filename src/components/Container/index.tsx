@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Animated, View } from 'react-native'
-import Header from 'components/Public/Header'
-import Content from 'components/List'
-import Footer from 'components/Public/Footer'
-import { BlurView } from 'expo'
-import { IReducers } from 'reducers'
+import Header from 'dafuq-bill/src/components/Public/Header'
+import Content from 'dafuq-bill/src/components/List'
+import Footer from 'dafuq-bill/src/components/Public/Footer'
+// import { BlurView } from 'expo'
+import { IReducers } from 'dafuq-bill/src/reducers'
 
-const AnimatedBlurView = Animated.createAnimatedComponent(BlurView)
+const AnimatedBlurView = Animated.createAnimatedComponent(View)
 
 interface ConnectedProps {
   showFooter: boolean

@@ -2,9 +2,9 @@ import React from 'react'
 import { LocaleProvider } from 'antd-mobile-rn'
 import enUS from 'antd-mobile-rn/lib/locale-provider/en_US'
 import { Provider } from 'react-redux'
-import { history, store } from 'store'
+import { history, store } from './store'
 import { ConnectedRouter } from 'connected-react-router'
-import Container from 'components/Container'
+import Container from './components/Container'
 
 interface AppProps {}
 

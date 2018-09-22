@@ -1,0 +1,3 @@
+rootProject.name = 'dafuqbill'
+
+include ':app'

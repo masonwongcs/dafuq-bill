@@ -5,8 +5,8 @@ import { styles } from './Style'
 import { IReducers } from 'reducers'
 import { connect } from 'react-redux'
 import { IList } from 'reducers/List'
-import { BILL_TYPE } from '../Public/Footer'
-import noItemImage from 'images/no-bills.png'
+import { BILL_TYPE } from 'dafuq-bill/src/components/Public/Footer'
+import noItemImage from 'dafuq-bill/src/images/no-bills.png'
 interface HeaderProps {
   list: IList[]
 }

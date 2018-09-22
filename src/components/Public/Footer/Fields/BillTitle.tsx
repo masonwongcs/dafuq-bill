@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { styles } from '../Style'
 import { Image, ImageSourcePropType, TextInput, View } from 'react-native'
-import Icon from 'images/label.png'
+import Icon from 'dafuq-bill/src/images/label.png'
 import { BILL_TYPE } from '../index'
 
 interface BillTitleProps {

@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { View, Text } from 'react-native'
 import { styles } from './Style'
-import { toggleFooter } from 'actions/App'
-import { dispatch } from 'store'
+import { toggleFooter } from 'dafuq-bill/src/actions/App'
+import { dispatch } from 'dafuq-bill/src/store'
 
 interface HeaderProps {}
 

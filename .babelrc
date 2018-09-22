@@ -1,18 +1,29 @@
 {
-  "presets": ["babel-preset-expo"],
-  "env": {
-    "development": {
-      "plugins": ["transform-react-jsx-source"]
-    }
-  },
+  "presets": ["module:metro-react-native-babel-preset"],
   "plugins": [
     [
-      "module-resolver",
+      "babel-plugin-root-import",
       {
-        "root": ["./src"],
-        "extensions": [".ios.js", ".android.js", ".js", ".json", ".ts", ".tsx"]
+        "rootPathSuffix": "src"
       }
     ],
-    ["import", { "libraryName": "antd-mobile-rn" }]
-  ]
+    [
+      "import",
+      {
+        "libraryName": "antd-mobile-rn"
+      }
+    ]
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        [
+          "babel-plugin-root-import",
+          {
+            "rootPathSuffix": "src"
+          }
+        ]
+      ]
+    }
+  }
 }

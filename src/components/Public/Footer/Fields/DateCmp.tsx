@@ -3,7 +3,7 @@ import moment from 'moment'
 import { DatePicker, List } from 'antd-mobile-rn'
 import { Image, ImageSourcePropType, Text, View } from 'react-native'
 import { styles } from '../Style'
-import Icon from 'images/time.png'
+import Icon from 'dafuq-bill/src/images/time.png'
 
 interface DateProps {
   onChangeText: (value: string | Date, type: string) => void
