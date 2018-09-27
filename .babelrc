@@ -2,28 +2,10 @@
   "presets": ["module:metro-react-native-babel-preset"],
   "plugins": [
     [
-      "babel-plugin-root-import",
-      {
-        "rootPathSuffix": "src"
-      }
-    ],
-    [
       "import",
       {
         "libraryName": "antd-mobile-rn"
       }
     ]
-  ],
-  "env": {
-    "production": {
-      "plugins": [
-        [
-          "babel-plugin-root-import",
-          {
-            "rootPathSuffix": "src"
-          }
-        ]
-      ]
-    }
-  }
+  ]
 }

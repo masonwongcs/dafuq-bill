@@ -3,17 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "@babel/preset-typescript": "^7.0.0",
     "@types/jest": "^23.3.2",
     "@types/react-test-renderer": "^16.0.2",
     "babel-plugin-import": "^1.9.1",
-    "babel-plugin-module-resolver": "^3.1.1",
-    "babel-plugin-root-import": "^6.1.0",
-    "babel-preset-react-native-stage-0": "^1.0.1",
     "jest": "^23.6.0",
     "jest-react-native": "^18.0.0",
     "metro-react-native-babel-preset": "^0.46.0",
-    "react-native-typescript-transformer": "^1.2.10",
     "react-test-renderer": "^16.5.2",
     "ts-jest": "^23.10.2",
     "typescript": "^3.0.3"
@@ -43,7 +38,6 @@
     "cacheDirectory": ".jest/cache"
   },
   "dependencies": {
-    "@types/expo": "^27.0.9",
     "@types/history": "^4.7.0",
     "@types/react": "^16.4.14",
     "@types/react-native": "^0.56.24",
@@ -52,7 +46,6 @@
     "@types/react-router-native": "^4.2.3",
     "antd-mobile-rn": "^2.2.1",
     "connected-react-router": "^4.5.0",
-    "expo": "^30.0.1",
     "history": "^4.7.2",
     "moment": "^2.22.2",
     "react": "^16.5.0",
