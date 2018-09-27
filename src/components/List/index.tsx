@@ -1,10 +1,10 @@
 import * as React from 'react'
-import moment from 'moment'
+import { format } from 'date-fns'
 import { ScrollView, View, Text, Image, ImageSourcePropType } from 'react-native'
 import { styles } from './Style'
-import { IReducers } from 'reducers'
+import { IReducers } from 'dafuq-bill/src/reducers'
 import { connect } from 'react-redux'
-import { IList } from 'reducers/List'
+import { IList } from 'dafuq-bill/src/reducers/List'
 import { BILL_TYPE } from 'dafuq-bill/src/components/Public/Footer'
 import noItemImage from 'dafuq-bill/src/images/no-bills.png'
 interface HeaderProps {
@@ -33,7 +33,7 @@ class Content extends React.Component<HeaderProps> {
                   : undefined
             ]}>
             <Text>{item.title}</Text>
-            <Text>{moment(item.date).format('YYYY-MM-DD')}</Text>
+            <Text>{format(item.date, 'YYYY-MM-DD')}</Text>
             <Text>{BILL_TYPE[item.type]}</Text>
             <Text>{item.amount}</Text>
           </View>
