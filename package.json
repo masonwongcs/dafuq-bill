@@ -8,10 +8,10 @@
     "babel-plugin-import": "^1.9.1",
     "jest": "^23.6.0",
     "jest-react-native": "^18.0.0",
-    "metro-react-native-babel-preset": "^0.46.0",
+    "metro-react-native-babel-preset": "^0.47.0",
     "react-test-renderer": "^16.5.2",
     "ts-jest": "^23.10.2",
-    "typescript": "^3.0.3"
+    "typescript": "^3.1.1"
   },
   "scripts": {
     "start": "react-native start",
@@ -40,7 +40,7 @@
   "dependencies": {
     "@types/history": "^4.7.0",
     "@types/react": "^16.4.14",
-    "@types/react-native": "^0.56.24",
+    "@types/react-native": "^0.57.0",
     "@types/react-redux": "^6.0.9",
     "@types/react-router": "^4.0.31",
     "@types/react-router-native": "^4.2.3",
