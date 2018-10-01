@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'center',
     top: -25,
-    backgroundColor: '#fff',
+    backgroundColor: '#75EFD9',
     shadowColor: 'rgba(0,0,0,0.2)',
     shadowOpacity: 0.8,
     shadowRadius: 5,

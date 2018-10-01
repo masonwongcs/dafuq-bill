@@ -145,6 +145,8 @@ class Footer extends React.Component<FooterProps, FooterState> {
           right: 0,
           height: fadeAnim,
           backgroundColor: '#F2F2F2',
+          // borderTopLeftRadius: 5000,
+          // borderTopRightRadius: 5000,
           borderTopStartRadius: 50,
           borderTopEndRadius: 50
         }}>
