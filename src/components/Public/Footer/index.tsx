@@ -143,7 +143,10 @@ class Footer extends React.Component<FooterProps, FooterState> {
           bottom: 0,
           left: 0,
           right: 0,
-          height: fadeAnim
+          height: fadeAnim,
+          backgroundColor: '#F2F2F2',
+          borderTopStartRadius: 50,
+          borderTopEndRadius: 50
         }}>
         <View>
           <TouchableOpacity style={styles.button} onPress={this.onClickMenuButton} activeOpacity={1}>

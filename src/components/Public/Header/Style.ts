@@ -2,16 +2,17 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   container: {
-    top: 35,
+    top: '15%',
     position: 'absolute',
-    borderRadius: 100,
-    left: 25,
-    right: 0,
-    height: 40,
-    width: '60%',
+    borderRadius: 8,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    left: '5%',
+    height: 110,
+    width: '90%',
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#E9E9E9',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 1,
@@ -24,19 +25,13 @@ export const styles = StyleSheet.create({
     }
   },
   active: {
-    backgroundColor: '#A0EEEE',
-    borderRadius: 100,
-    elevation: 1,
-    flex: 1,
+    color: '#A0EEEE',
     width: '33%',
     height: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingLeft: 20,
-    paddingRight: 20
+    justifyContent: 'center'
   },
   inactive: {
-    flex: 1,
     width: '33%',
     height: '100%',
     alignItems: 'center',
@@ -55,20 +50,24 @@ export const styles = StyleSheet.create({
     shadowRadius: 5
   },
   activeText: {
+    marginTop: 25,
     flex: 1,
     width: '100%',
     lineHeight: 40,
-    color: '#fff',
+    color: '#A0EEEE',
     fontWeight: 'bold',
-    textShadowColor: 'rgba(0, 0, 0, 0.2)',
+    textAlign: 'center',
+    // textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 4
   },
   text: {
+    marginTop: 25,
     flex: 1,
     lineHeight: 40,
     color: '#B7B7B7',
     textShadowRadius: 1,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center'
   }
 })

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { format } from 'date-fns'
-import { ScrollView, View, Text, Image, ImageSourcePropType } from 'react-native'
+import {ScrollView, View, Text, Image, ImageSourcePropType, ImageStyle} from 'react-native'
 import { styles } from './Style'
 import { IReducers } from 'dafuq-bill/src/reducers'
 import { connect } from 'react-redux'
@@ -16,7 +16,7 @@ class Content extends React.Component<HeaderProps> {
     const { list } = this.props
     const lastIndex = list.length - 1
     return list.length === 0 ? (
-      <Image style={styles.noItemImage} source={noItemImage as ImageSourcePropType} resizeMode="contain" />
+      <Image style={styles.noItemImage as ImageStyle} source={noItemImage as ImageSourcePropType} resizeMode="contain" />
     ) : (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         {list.map((item, index) => (

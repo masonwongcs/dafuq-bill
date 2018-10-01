@@ -23,8 +23,9 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.2
   },
   noItemImage: {
-    width: "50%",
-    height: "100%",
+    marginTop: '20%',
+    width: '40%',
+    height: '100%',
     marginLeft: 'auto',
     marginRight: 'auto'
   }

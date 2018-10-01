@@ -7,6 +7,8 @@ import Footer from 'dafuq-bill/src/components/Public/Footer'
 // import { BlurView } from 'expo'
 import { IReducers } from 'dafuq-bill/src/reducers'
 
+import bg from 'dafuq-bill/src/images/bg.png'
+
 const AnimatedBlurView = Animated.createAnimatedComponent(View)
 
 interface ConnectedProps {
@@ -60,22 +62,16 @@ class Container extends React.Component<ContainerProps, ContainerState> {
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
-          {sideBar && (
-            <AnimatedBlurView
-              tint="default"
-              intensity={intensity}
-              style={{
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0,
-                height: '100%',
-                width: '100%',
-                zIndex: 99
-              }}
-            />
-          )}
+          <Animated.Image
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: '25%',
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}
+            source={bg}
+          />
           <Header />
           {/*<Sidebar />*/}
           <Content />
