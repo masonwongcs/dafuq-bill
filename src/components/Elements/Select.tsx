@@ -1,5 +1,29 @@
 import * as React from 'react'
-import { Modal, View, Picker, Text, TouchableOpacity } from 'react-native'
+import { Animated, Modal, View, Picker, Text, TouchableOpacity, StyleProp, ViewStyle } from 'react-native'
+
+interface AnimatedWrapperProps {
+  style: StyleProp<ViewStyle>
+}
+interface AnimatedWrapperState {
+  bottomAnim: Animated.Value
+}
+class AnimatedWrapper extends React.Component<AnimatedWrapperProps, AnimatedWrapperState> {
+  readonly state = {
+    bottomAnim: new Animated.Value(-300) // Initial value for opacity: 0
+  }
+
+  componentDidMount() {
+    Animated.timing(this.state.bottomAnim, {
+      toValue: 0,
+      duration: 100
+    }).start() // Starts the animation
+  }
+  render() {
+    const { bottomAnim } = this.state
+    const { style, children } = this.props
+    return <Animated.View style={Object.assign({}, style, { bottom: bottomAnim })}>{children}</Animated.View>
+  }
+}
 
 interface OptionProps {
   value: string | number
@@ -48,18 +72,17 @@ class Select extends React.Component<SelectProps, SelectState> {
               onPress={this.closePicker}
               style={{ backgroundColor: '#000', opacity: 0.3, height: '100%', width: '100%' }}
             />
-            <Picker
-              selectedValue={value}
-              onValueChange={onChange}
+            <AnimatedWrapper
               style={{
                 backgroundColor: '#fff',
                 width: '100%',
                 position: 'absolute',
-                left: 0,
-                bottom: 0
+                left: 0
               }}>
-              {children}
-            </Picker>
+              <Picker selectedValue={value} onValueChange={onChange}>
+                {children}
+              </Picker>
+            </AnimatedWrapper>
           </View>
         </Modal>
       </>
