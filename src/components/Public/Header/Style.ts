@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   container: {
-    top: '15%',
+    top: -50,
     position: 'absolute',
     borderRadius: 8,
     marginLeft: 'auto',
