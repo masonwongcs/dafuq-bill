@@ -1,6 +1,16 @@
 import * as React from 'react'
 import { format } from 'date-fns'
-import { ScrollView, View, Text, Image, ImageSourcePropType, ImageStyle, Animated, Dimensions, Platform } from 'react-native'
+import {
+  ScrollView,
+  View,
+  Text,
+  Image,
+  ImageSourcePropType,
+  ImageStyle,
+  Animated,
+  Dimensions,
+  Platform
+} from 'react-native'
 import { styles } from './Style'
 import { IReducers } from 'dafuq-bill/src/reducers'
 import { connect } from 'react-redux'
@@ -12,12 +22,12 @@ interface HeaderProps {
   list: IList[]
 }
 
-const {width: SCREEN_WIDTH} = Dimensions.get("window");
-const IMAGE_HEIGHT = 250;
-const HEADER_HEIGHT = Platform.OS === "ios" ? 64 : 50;
-const SCROLL_HEIGHT = IMAGE_HEIGHT - HEADER_HEIGHT;
-const THEME_COLOR = "rgba(85,186,255, 1)";
-const FADED_THEME_COLOR = "rgba(85,186,255, 0.8)";
+const { width: SCREEN_WIDTH } = Dimensions.get('window')
+const IMAGE_HEIGHT = 250
+const HEADER_HEIGHT = Platform.OS === 'ios' ? 64 : 50
+const SCROLL_HEIGHT = IMAGE_HEIGHT - HEADER_HEIGHT
+const THEME_COLOR = 'rgba(85,186,255, 1)'
+const FADED_THEME_COLOR = 'rgba(85,186,255, 0.8)'
 
 class Content extends React.Component<HeaderProps> {
   nScroll = new Animated.Value(0)
@@ -50,25 +60,6 @@ class Content extends React.Component<HeaderProps> {
     inputRange: [0, SCROLL_HEIGHT],
     outputRange: [1, 0]
   })
-  tabContent = (x, i) => (
-    <View style={{ height: this.state.height }}>
-      <List
-        onLayout={({
-          nativeEvent: {
-            layout: { height }
-          }
-        }) => {
-          this.heights[i] = height
-          if (this.state.activeTab === i) this.setState({ height })
-        }}>
-        {new Array(x).fill(null).map((_, i) => (
-          <Item key={i}>
-            <Text>Item {i}</Text>
-          </Item>
-        ))}
-      </List>
-    </View>
-  )
   heights = [500, 500]
   state = {
     activeTab: 0,
@@ -83,13 +74,7 @@ class Content extends React.Component<HeaderProps> {
   render() {
     const { list } = this.props
     const lastIndex = list.length - 1
-    return list.length === 0 ? (
-      <Image
-        style={styles.noItemImage as ImageStyle}
-        source={noItemImage as ImageSourcePropType}
-        resizeMode="contain"
-      />
-    ) : (
+    return (
       <Animated.ScrollView
         scrollEventThrottle={5}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.nScroll } } }], { useNativeDriver: true })}
@@ -102,25 +87,33 @@ class Content extends React.Component<HeaderProps> {
           <Header />
         </Animated.View>
 
-        {list.map((item, index) => (
-          <View
-            key={index}
-            style={[
-              styles.item,
-              index === 0
-                ? { marginTop: 90 }
-                : index === lastIndex
-                  ? {
-                      marginBottom: 80
-                    }
-                  : undefined
-            ]}>
-            <Text>{item.title}</Text>
-            <Text>{format(item.date, 'YYYY-MM-DD')}</Text>
-            <Text>{BILL_TYPE[item.type]}</Text>
-            <Text>{item.amount}</Text>
-          </View>
-        ))}
+        {list.length === 0 ? (
+          <Image
+            style={styles.noItemImage as ImageStyle}
+            source={noItemImage as ImageSourcePropType}
+            resizeMode="contain"
+          />
+        ) : (
+          list.map((item, index) => (
+            <View
+              key={index}
+              style={[
+                styles.item,
+                index === 0
+                  ? { marginTop: 90 }
+                  : index === lastIndex
+                    ? {
+                        marginBottom: 80
+                      }
+                    : undefined
+              ]}>
+              <Text>{item.title}</Text>
+              <Text>{format(item.date, 'YYYY-MM-DD')}</Text>
+              <Text>{BILL_TYPE[item.type]}</Text>
+              <Text>{item.amount}</Text>
+            </View>
+          ))
+        )}
       </Animated.ScrollView>
     )
   }
