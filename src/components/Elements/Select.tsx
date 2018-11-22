@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Animated, Modal, View, Picker, Text, TouchableOpacity, StyleProp, ViewStyle } from 'react-native'
+import { Animated, Modal, View, Picker, Text, TouchableOpacity, StyleProp, ViewStyle, TextStyle } from 'react-native'
 
 interface AnimatedWrapperProps {
   style: StyleProp<ViewStyle>
@@ -36,6 +36,7 @@ const Option: React.SFC<OptionProps> = ({ value, label }) => {
 interface SelectProps {
   value: string | number
   onChange: (itemValue: string | number, itemPosition: number) => void
+  style?: StyleProp<TextStyle>
 }
 interface SelectState {
   showPicker: boolean
@@ -58,12 +59,12 @@ class Select extends React.Component<SelectProps, SelectState> {
   }
   render() {
     const { showPicker } = this.state
-    const { value, onChange, children } = this.props
+    const { value, onChange, children, style } = this.props
     const options = React.Children.map<OptionProps>(children, (child: React.ReactElement<OptionProps>) => child.props)
     return (
       <>
         <TouchableOpacity onPress={this.onTouch}>
-          <Text>{options.find(option => option.value === value).label}</Text>
+          <Text style={style}>{options.find(option => option.value === value).label}</Text>
         </TouchableOpacity>
 
         <Modal visible={showPicker} transparent>

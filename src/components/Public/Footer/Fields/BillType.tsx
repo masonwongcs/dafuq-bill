@@ -30,7 +30,8 @@ const BillType: React.SFC<BillTypeProps> = ({ onChangeText, type }) => {
           value={type.toString()}
           onChange={(value: string) => {
             onChangeText('type', Number(value))
-          }}>
+          }}
+          style={{ fontWeight: 'bold', height: '100%', paddingLeft: 50, lineHeight: 50 }}>
           {options.map(option => (
             <Option key={option.value} {...option} />
           ))}
