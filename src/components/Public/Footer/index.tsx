@@ -13,19 +13,19 @@ import {
   ImageSourcePropType
 } from 'react-native'
 import { styles } from './Style'
-import { toggleFooter, hideFooterAction, showFooterAction } from 'actions/App'
-import { dispatch } from 'store'
-import { IReducers } from 'reducers'
+import { toggleFooter, hideFooterAction, showFooterAction } from 'dafuq-bill/src/actions/App'
+import { dispatch } from 'dafuq-bill/src/store'
+import { IReducers } from 'dafuq-bill/src/reducers'
 import { connect } from 'react-redux'
-import { LinearGradient } from 'expo'
+// import { LinearGradient } from 'expo'
 import BillTitle from './Fields/BillTitle'
 import BillType from './Fields/BillType'
 import Amount from './Fields/Amount'
 import DateCmp from './Fields/DateCmp'
 
-import addIcon from 'images/add.png'
+import addIcon from 'dafuq-bill/src/images/add.png'
 
-import { addItemToList } from 'actions/List'
+import { addItemToList } from 'dafuq-bill/src/actions/List'
 
 export enum BILL_TYPE {
   'Credit Card',
@@ -143,7 +143,12 @@ class Footer extends React.Component<FooterProps, FooterState> {
           bottom: 0,
           left: 0,
           right: 0,
-          height: fadeAnim
+          height: fadeAnim,
+          backgroundColor: '#F2F2F2',
+          // borderTopLeftRadius: 5000,
+          // borderTopRightRadius: 5000,
+          borderTopStartRadius: 50,
+          borderTopEndRadius: 50
         }}>
         <View>
           <TouchableOpacity style={styles.button} onPress={this.onClickMenuButton} activeOpacity={1}>
@@ -160,8 +165,22 @@ class Footer extends React.Component<FooterProps, FooterState> {
             />
           </TouchableOpacity>
         </View>
-        <LinearGradient
-          colors={['#A4EFF0', '#9AEBD7']}
+        {/*<LinearGradient*/}
+        {/*colors={['#A4EFF0', '#9AEBD7']}*/}
+        {/*style={{*/}
+        {/*position: 'absolute',*/}
+        {/*top: 0,*/}
+        {/*right: 0,*/}
+        {/*bottom: 0,*/}
+        {/*left: 0,*/}
+        {/*height: '100%',*/}
+        {/*width: '100%',*/}
+        {/*zIndex: -1,*/}
+        {/*borderTopLeftRadius: 30,*/}
+        {/*borderTopRightRadius: 30,*/}
+        {/*overflow: 'hidden'*/}
+        {/*}}>*/}
+        <ScrollView
           style={{
             position: 'absolute',
             top: 0,
@@ -170,37 +189,23 @@ class Footer extends React.Component<FooterProps, FooterState> {
             left: 0,
             height: '100%',
             width: '100%',
-            zIndex: -1,
-            borderTopLeftRadius: 30,
-            borderTopRightRadius: 30,
-            overflow: 'hidden'
-          }}>
-          <ScrollView
-            style={{
-              position: 'absolute',
-              top: 0,
-              right: 0,
-              bottom: 0,
-              left: 0,
-              height: '100%',
-              width: '100%',
-              zIndex: -1
-            }}
-            scrollEventThrottle={16}
-            onScroll={evt =>
-              this.updateFooterHeight((evt as NativeSyntheticEvent<NativeScrollEvent>).nativeEvent.contentOffset.y)
-            }
-          />
-          <Text style={styles.title}>Create new bill</Text>
-          <BillTitle title={title} onChangeText={this.onChangeText} />
-          <BillType type={type} onChangeText={this.onChangeText} />
-          <Amount amount={amount} onChangeText={this.onChangeText} />
+            zIndex: -1
+          }}
+          scrollEventThrottle={16}
+          onScroll={evt =>
+            this.updateFooterHeight((evt as NativeSyntheticEvent<NativeScrollEvent>).nativeEvent.contentOffset.y)
+          }
+        />
+        <Text style={styles.title}>Create new bill</Text>
+        <BillTitle title={title} onChangeText={this.onChangeText} />
+        <BillType type={type} onChangeText={this.onChangeText} />
+        <Amount amount={amount} onChangeText={this.onChangeText} />
 
-          <DateCmp date={date} onChangeText={this.onChangeText} />
-          <TouchableOpacity style={styles.addButton} onPress={this.onSubmit}>
-            <Text style={[styles.addButtonText, { fontWeight: 'bold' }]}>Add</Text>
-          </TouchableOpacity>
-        </LinearGradient>
+        <DateCmp date={date} onChangeText={this.onChangeText} />
+        <TouchableOpacity style={styles.addButton} onPress={this.onSubmit}>
+          <Text style={[styles.addButtonText, { fontWeight: 'bold' }]}>Add</Text>
+        </TouchableOpacity>
+        {/*</LinearGradient>*/}
       </Animated.View>
     )
   }

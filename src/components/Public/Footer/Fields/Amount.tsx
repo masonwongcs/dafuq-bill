@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { styles } from '../Style'
 import { Image, ImageSourcePropType, TextInput, View } from 'react-native'
-import Icon from 'images/amount.png'
+import Icon from 'dafuq-bill/src/images/amount.png'
 
 interface AmountProps {
   onChangeText: (type: string, value: string) => void

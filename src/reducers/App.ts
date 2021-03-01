@@ -1,4 +1,4 @@
-import { HIDE_FOOTER, SHOW_FOOTER, TOGGLE_FOOTER } from 'actions/App'
+import { HIDE_FOOTER, SHOW_FOOTER, TOGGLE_FOOTER } from 'dafuq-bill/src/actions/App'
 
 export interface IAppState {
   showFooter: boolean

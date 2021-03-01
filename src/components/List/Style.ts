@@ -1,10 +1,15 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+
+var paddingBottom = 50;
+var scrollViewHeight = Dimensions.get('window').height - paddingBottom;
 
 export const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    height: '100%',
-    width: '100%'
+    height: scrollViewHeight,
+    width: '100%',
+    paddingTop: 150,
+    top: 0
   },
   item: {
     width: '90%',
@@ -23,8 +28,9 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.2
   },
   noItemImage: {
-    width: "50%",
-    height: "100%",
+    marginTop: '20%',
+    width: '40%',
+    height: '100%',
     marginLeft: 'auto',
     marginRight: 'auto'
   }

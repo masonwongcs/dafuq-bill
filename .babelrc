@@ -1,18 +1,11 @@
 {
-  "presets": ["babel-preset-expo"],
-  "env": {
-    "development": {
-      "plugins": ["transform-react-jsx-source"]
-    }
-  },
+  "presets": ["module:metro-react-native-babel-preset"],
   "plugins": [
     [
-      "module-resolver",
+      "import",
       {
-        "root": ["./src"],
-        "extensions": [".ios.js", ".android.js", ".js", ".json", ".ts", ".tsx"]
+        "libraryName": "antd-mobile-rn"
       }
-    ],
-    ["import", { "libraryName": "antd-mobile-rn" }]
+    ]
   ]
 }

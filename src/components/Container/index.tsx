@@ -1,13 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Animated, View } from 'react-native'
-import Header from 'components/Public/Header'
-import Content from 'components/List'
-import Footer from 'components/Public/Footer'
-import { BlurView } from 'expo'
-import { IReducers } from 'reducers'
+import Header from 'dafuq-bill/src/components/Public/Header'
+import Content from 'dafuq-bill/src/components/List'
+import Footer from 'dafuq-bill/src/components/Public/Footer'
+import { BlurView, VibrancyView } from 'react-native-blur'
+// import { BlurView } from 'expo'
+import { IReducers } from 'dafuq-bill/src/reducers'
 
-const AnimatedBlurView = Animated.createAnimatedComponent(BlurView)
+import bg from 'dafuq-bill/src/images/bg.png'
+
+const AnimatedBlurView = Animated.createAnimatedComponent(View)
 
 interface ConnectedProps {
   showFooter: boolean
@@ -18,12 +21,26 @@ interface ContainerProps extends ConnectedProps {}
 interface ContainerState {
   intensity: Animated.AnimatedValue
   sideBar: boolean
+  modalBlur: number
 }
 
 class Container extends React.Component<ContainerProps, ContainerState> {
-  readonly state = {
-    sideBar: false,
-    intensity: new Animated.Value(0)
+  // readonly state = {
+  //
+  // }
+  private animation: Animated.Value
+  constructor(props) {
+    super(props)
+    this.state = {
+      sideBar: false,
+      modalBlur: 0,
+      intensity: new Animated.Value(0)
+    }
+
+    this.animation = new Animated.Value(0)
+    this.animation.addListener(value => {
+      this.setState({ modalBlur: value.value })
+    })
   }
 
   componentDidUpdate({ showFooter: prevShowFooter }: ContainerProps) {
@@ -35,16 +52,16 @@ class Container extends React.Component<ContainerProps, ContainerState> {
             sideBar: true
           },
           () => {
-            Animated.spring(this.state.intensity, {
-              toValue: 100,
-              friction: 30
+            Animated.spring(this.animation, {
+              friction: 30,
+              toValue: 32
             }).start()
           }
         )
       } else {
-        Animated.spring(this.state.intensity, {
-          toValue: 0,
-          friction: 30
+        Animated.spring(this.animation, {
+          friction: 30,
+          toValue: 0
         }).start(() => {
           this.setState({
             sideBar: false
@@ -56,14 +73,13 @@ class Container extends React.Component<ContainerProps, ContainerState> {
 
   render() {
     const { showFooter } = this.props
-    const { intensity, sideBar } = this.state
+    const { intensity, sideBar, modalBlur } = this.state
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
-          {sideBar && (
-            <AnimatedBlurView
-              tint="default"
-              intensity={intensity}
+          {modalBlur >= 1 && (
+            <BlurView
+              blurType="light"
               style={{
                 position: 'absolute',
                 top: 0,
@@ -74,9 +90,20 @@ class Container extends React.Component<ContainerProps, ContainerState> {
                 width: '100%',
                 zIndex: 99
               }}
+              blurAmount={this.state.modalBlur}
             />
           )}
-          <Header />
+          <Animated.Image
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: '25%',
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}
+            source={bg}
+          />
+          {/*<Header />*/}
           {/*<Sidebar />*/}
           <Content />
         </View>

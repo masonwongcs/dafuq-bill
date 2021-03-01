@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Animated, FlatList, Text } from 'react-native'
-import { IReducers } from '../../../reducers'
+import { IReducers } from 'dafuq-bill/src/reducers'
 
 interface ConnectedProps {
   showSidebar: boolean

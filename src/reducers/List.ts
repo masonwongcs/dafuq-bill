@@ -1,5 +1,5 @@
-import { BILL_TYPE } from 'components/Public/Footer'
-import { ADD_ITEM_TO_LIST } from 'actions/List'
+import { BILL_TYPE } from 'dafuq-bill/src/components/Public/Footer'
+import { ADD_ITEM_TO_LIST } from 'dafuq-bill/src/actions/List'
 
 export interface IList {
   type: BILL_TYPE
